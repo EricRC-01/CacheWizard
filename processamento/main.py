@@ -31,18 +31,14 @@ def main():
 
     # Mapeamento direto
     else:
-        nova_cache = cache.MapeamentoDireto(qnt_bits_enderecar, qnt_palavras, qnt_palava_bloco, tam_palavra)
+        cache_map_direto = cache.MapeamentoDireto(qnt_palavras, qnt_palava_bloco, tam_palavra)
         print()
         print()
 
-        print("Printando o Tag", nova_cache.enderecoTag())
+        novo_enderecamento = end.Endereco(cache_map_direto, qnt_bits_enderecar, False)
         print()
+        print(novo_enderecamento)
 
-        print("Printando o Indice", nova_cache.enderecoIndice())
-        print()
-
-        print("Printando o byteoffset", nova_cache.enderecoByteoffset())
-        print()
 
 
 
