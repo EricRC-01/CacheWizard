@@ -3,9 +3,6 @@ import classe_endereco as end
 
 
 
-
-
-
 def main():
 
 
