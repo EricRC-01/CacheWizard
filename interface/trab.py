@@ -8,6 +8,8 @@ import classes_caches as cache
 import classe_endereco as end
 
 
+
+# Função para caclular o endereçamento de um level de uma cache  
 def calcCache(
         qnt_palavra_bloco, 
         qnt_conjuntos, 

@@ -3,21 +3,23 @@ import classe_endereco as end
 
 
 
-def main():
-
-    #1
-    qnt_bits_enderecar = int(input("insira a quantidade de bits: ")) 
-    #2
-    qnt_palavras = int(input("Insira a quantidade de palavras: "))
-    #3
-    tam_palavra = int(input("insira o tamanho da palavra (em bytes): "))
-    #4
-    qnt_palavra_bloco = int(input("insira a quantidade de palavras por bloco: "))
-    #5 
-    qnt_conjuntos = int(input("insira a quantidade de conjuntos: "))
 
 
+# Função para caclular o endereçamento de um level de uma cache  
+def calcCache(
+        qnt_palavra_bloco, 
+        qnt_conjuntos, 
+        tam_palavra, 
+        qnt_blocos,
+        qnt_bits_enderecar,
+        tipo_cache #  1: livremente associativo, 2: Por Ass conjunto, 3: Mapeamento direto 
+    ):
+
+    novo_enderecamento: end
+    qnt_palavras = qnt_blocos * qnt_palavra_bloco 
+    
     # Livremente Associativo
+    #if tipo_cache == 1: pass
     if qnt_conjuntos == 1:
         print()
         print()
@@ -31,6 +33,7 @@ def main():
 
 
     # Associativo por conjunto
+    #elif tipo_cache == 2: pass
     elif qnt_conjuntos > 1:
         print()
         print()
@@ -43,6 +46,7 @@ def main():
 
 
     # Mapeamento direto
+    #elif tipo_cache == 3: pass
     else:
         print()
         print()
@@ -53,20 +57,50 @@ def main():
         print()
         print(novo_enderecamento)
 
+    # else: print("comando (tipo de cache) não reconhcido")
+
+
+
+    return novo_enderecamento
 
 
 
 
 
+def main():
 
-        
+    
+    # Entrada da linha 1
+    print("insira a quantidade de bits: ")
+    qnt_bits_enderecar = int(input()) 
+    
+    # Entrada da linha 2
+    print("Insira a quantidade de palavras: ")
+    qnt_palavras = int(input())
+    
+    # Entrada da linha 3
+    print("insira o tamanho da palavra (em bytes): ")
+    tam_palavra = int(input())
+    
+    # Entrada da linha 4
+    print("insira a quantidade de palavras por bloco: ")
+    qnt_palavra_bloco = int(input())
+    
+    # Entrada da linha 5 
+    print("insira a quantidade de conjuntos: ")
+    qnt_conjuntos = int(input())
 
 
+    #Caclulo da quantidade de blocos 
+    qnt_blocos = qnt_palavras/qnt_palavra_bloco 
+    
+    #Obs. outra forma de fazer isso seria:
+    # qnt_palavras = qnt_blocos * qnt_palavra_bloco 
 
-
+    enderecoL1 = calcCache(qnt_palavra_bloco, qnt_conjuntos, tam_palavra, qnt_blocos, qnt_bits_enderecar, 1)
+    enderecoL2 = calcCache(qnt_palavra_bloco, qnt_conjuntos, tam_palavra, qnt_blocos, qnt_bits_enderecar, 2)
+    enderecoL3 = calcCache(qnt_palavra_bloco, qnt_conjuntos, tam_palavra, qnt_blocos, qnt_bits_enderecar, 3)
 
 
 if __name__ == '__main__':
     main()
-
-
