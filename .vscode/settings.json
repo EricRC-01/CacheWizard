@@ -19,5 +19,8 @@
         "palavras",
         "quantidade",
         "tamanho"
+    ],
+    "python.analysis.extraPaths": [
+        "./processamento"
     ]
 }

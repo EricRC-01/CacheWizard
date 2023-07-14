@@ -8,29 +8,58 @@ import classes_caches as cache
 import classe_endereco as end
 
 
-def calcCache(qnt_palavra_bloco, qnt_conjuntos, tam_palavra, qnt_blocos,qnt_bits_enderecar):
+def calcCache(
+        qnt_palavra_bloco, 
+        qnt_conjuntos, 
+        tam_palavra, 
+        qnt_blocos,
+        qnt_bits_enderecar,
+        tipo_cache #[1: livremente associativo, 2: Por Ass conjunto, 3: Mapeamento direto ]
+    ):
 
+    novo_enderecamento: end
     qnt_palavras = qnt_blocos * qnt_palavra_bloco 
     
-    # Associativo
+    # Livremente Associativo
+    if tipo_cache == 1: pass
     if qnt_conjuntos == 1:
-        pass
+        print()
+        print()
+
+        cache_liv_associativa = cache.LivrementeAssociativo(qnt_palavras, qnt_palavra_bloco, tam_palavra)
+        novo_enderecamento = end.Endereco(cache_liv_associativa, qnt_bits_enderecar, True)
+
+        print(novo_enderecamento)
+
+
 
 
     # Associativo por conjunto
+    if tipo_cache == 2: pass
     elif qnt_conjuntos > 1:
-        pass
+        print()
+        print()
+
+        cache_associativo_con = cache.AssociatvaConjunto(qnt_palavras, qnt_palavra_bloco, tam_palavra, qnt_conjuntos)        
+        novo_enderecamento = end.Endereco(cache_associativo_con, qnt_bits_enderecar, False)
+
+        print()
+        print(novo_enderecamento)
 
 
     # Mapeamento direto
+    if tipo_cache == 3: pass
     else:
-        cache_map_direto = cache.MapeamentoDireto(qnt_palavras, qnt_palavra_bloco, tam_palavra)
         print()
         print()
 
+        cache_map_direto = cache.MapeamentoDireto(qnt_palavras, qnt_palavra_bloco, tam_palavra)
         novo_enderecamento = end.Endereco(cache_map_direto, qnt_bits_enderecar, False)
+
         print()
         print(novo_enderecamento)
+
+    return novo_enderecamento
 
 
 
@@ -39,13 +68,18 @@ def Submit(L1,L2,L3,tamPalavra):
 
 
     l1 = L1.get()
+    l2 = L2.get()
+    l3 = L3.get()
 
-    qnt_bits_enderecar = tamPalavra #Pode ser melhor definir como 32 por padrão 
+    # Converter o tamanhho da palavra na quantidade de bits de endereçamento
+    qnt_bits_enderecar = tamPalavra  
+    # Mudar o tamanho da palavra pra quantidade de bits
     tam_palavra = tamPalavra/8
-    print("tam_palavra = ", tam_palavra)
 
-
-    calcCache(l1[0], l1[2], tam_palavra, l1[1], qnt_bits_enderecar)
+    # Calcular endereçamento
+    enderecamento_L1 = calcCache(l1[0], l1[2], tam_palavra, l1[1], qnt_bits_enderecar)
+    enderecamento_L2 = calcCache(l2[0], l2[2], tam_palavra, l2[1], qnt_bits_enderecar)
+    enderecamento_L3 = calcCache(l3[0], l3[2], tam_palavra, l3[1], qnt_bits_enderecar)
 
 
 root = tk.Tk()

@@ -4,10 +4,9 @@ import math
 
 class Cache:
 
-    tam_palavra: int
+    tam_palavra: int  #Tamanho (em bytes) da palavra
     qnt_palavras: int # quantidade de palavras
 
-    qnt_blocos: int 
 
 
 
@@ -15,40 +14,51 @@ class Cache:
         pass
 
 
-class Associativo(Cache):
-    pass
+class LivrementeAssociativo(Cache):
 
+    def __init__(self, 
+            qnt_palavras: int, 
+            qnt_palavra_bloco: int,
+            tam_palavra: int,
+        ) :
+        self.qnt_palavras = qnt_palavras
+        self.qnt_palavra_bloco = qnt_palavra_bloco
+        self.tam_palavra = tam_palavra
+
+
+class AssociatvaConjunto(Cache):
+    
+    qnt_conjuntos: int
+
+    def __init__(self, 
+            qnt_palavras: int, 
+            qnt_palavra_bloco: int,
+            tam_palavra: int,
+            qnt_conjuntos: int
+        ) :
+        self.qnt_palavras = qnt_palavras
+        self.qnt_palavra_bloco = qnt_palavra_bloco
+        self.tam_palavra = tam_palavra
+
+        self.qnt_blocos = qnt_palavras / qnt_palavra_bloco
+
+        self.qnt_conjuntos = qnt_conjuntos  
 
 class MapeamentoDireto(Cache):
     
-    qnt_palavras_bloco: int
+    qnt_palavra_bloco: int
+    qnt_blocos: int   # Quantidade de blocos
 
     # A função retorna o endereçamento da memória  
     def __init__(self, 
             qnt_palavras: int, 
-            qnt_palavras_bloco: int,
+            qnt_palavra_bloco: int,
             tam_palavra: int,
         ) :
         self.qnt_palavras = qnt_palavras
-        self.qnt_palavras_bloco = qnt_palavras_bloco
+        self.qnt_palavra_bloco = qnt_palavra_bloco
         self.tam_palavra = tam_palavra
 
-        self.qnt_blocos = qnt_palavras / qnt_palavras_bloco
+        self.qnt_blocos = qnt_palavras / qnt_palavra_bloco
         
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    

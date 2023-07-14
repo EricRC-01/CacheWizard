@@ -35,7 +35,9 @@ class CacheInterface:
 
     def get(self):
         try:
-            res = (int(self.txtQtdPalavras.get('1.0','end-1c')),int(self.txtQtdBlocos.get('1.0','end-1c')),int(self.txtQtdConjuntos.get('1.0','end-1c')))
+            res = (int(self.txtQtdPalavras.get('1.0','end-1c')), 
+                   int(self.txtQtdBlocos.get('1.0','end-1c')), 
+                   int(self.txtQtdConjuntos.get('1.0','end-1c')))
             return res
         except:
             print("Os valores devem ser inteiros")

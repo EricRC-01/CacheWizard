@@ -1,3 +1,4 @@
+from abc import ABC, abstractmethod
 import classes_caches as cache
 import math
 
@@ -39,14 +40,19 @@ class Endereco:
 
         return str_final
 
+    # Retorna o número nescessario de bits para endereçar o byteoffset 
     def bitssByteoffset(self, tam_palavra: int):
-        #Resultado em bits 
         return math.log(tam_palavra, 2)
     
+    # Retorna o número nescessario de bits para endereçar o indice 
     def bitssIndice(self, qnt_blocos: int):
-        #Resultado em bits
         return math.log(qnt_blocos, 2)
 
+    # Retorna o número nescessario de bits para endereçar o indice 
+    def bitssIndiceConjunto(self, qnt_conjunto: int):
+        return math.log(qnt_conjunto, 2)
+
+    # Retorna o número nescessario de bits para endereçar a tag 
     def bitssTag(self):
         return self.qnt_bits_endereco - self.byte_offset - self.indice
 
